@@ -1,0 +1,77 @@
+# k create configmap cm-mongo  --from-file=/home/das/Documents/myCmds/myKubernetes/boot-fluentd-elasticsearch-kibana/application.properties
+# k get configmap cm-mongo  -o yaml
+# k create -f /home/das/Documents/myCmds/myKubernetes/boot-fluentd-elasticsearch-kibana/all.yaml
+# k create -f /home/das/Documents/myCmds/myKubernetes/boot-fluentd-elasticsearch-kibana/fek.yaml
+## For GKE
+# k get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP")].address}'
+## For Minikube , http://192.168.99.100:31001/hw
+# minikube service svc-elk
+#  k set image deployment dp-elk cont-elk=ddas55/boot-elk
+## DELETE
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-elk
+  labels:
+    app: pod-elk
+    env: dev
+spec:
+  selector:
+    app: pod-elk
+    env: dev
+  type: NodePort
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    nodePort: 31001
+  - name: https
+    port: 443
+    targetPort: 8443
+    nodePort: 31002
+    
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: ingress-ip
+spec:
+  backend:
+    serviceName: svc-elk
+    servicePort: 8080
+  rules:
+  - http:
+      paths:
+      - path: /echo
+        backend:
+          serviceName: svc-elk
+          servicePort: 8080
+      - path: /echo/*
+        backend:
+          serviceName: svc-elk
+          servicePort: 8080     
+          
+         
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mongo
+spec:
+  ports:
+  - port: 12017
+  
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: svc-mongo
+subsets:
+ - addresses:
+    - ip: 54.70.210.212
+   ports:
+   - port: 12017  

@@ -1,0 +1,8 @@
+#Docker push
+#Run As→ Run Configuration → Goals: -Pdockerimage docker:build docker:push
+
+docker run --net="bridge" --name configlogback -d \
+ -v /home/das/Documents/cmds-kubernetes/configlogback/logs:/var/logs \
+ -v /home/das/Documents/cmds-kubernetes/configlogback/application.properties:/config/application.properties \
+ -v /home/das/Documents/cmds-kubernetes/configlogback/logback-spring.xml:/lib/logback-spring.xml \
+ -p 8080:8080 configlogback

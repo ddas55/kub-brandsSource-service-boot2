@@ -1,0 +1,56 @@
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: dp-kub-brandssource-service
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kub-brandssource-service
+    spec:
+      containers:
+      - name: kub-brandssource-service
+        image: ddas55/kub-brandssource-service
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8070
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: vm-kub-brandssource-service
+          mountPath: "/config/" 
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /svcbrands/brands/healthz
+            port: 8070
+            httpHeaders:
+             - name: X-Custom-Header
+               value: Awesome
+          initialDelaySeconds: 30
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /svcbrands/brands/rediness
+            port: 8070
+            httpHeaders:
+             - name: X-Custom-Header
+               value: Awesome
+          initialDelaySeconds: 5
+      volumes:
+      - name: vm-kub-brandssource-service
+        configMap:
+          name: cm-kub-brandssource-service
+          items:
+          - key: application.properties 
+            path: application.properties

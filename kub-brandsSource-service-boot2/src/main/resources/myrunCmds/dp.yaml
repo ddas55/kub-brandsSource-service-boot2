@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: dp-brands
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+    app: pod-brands
+    env: dev
+  template:
+    metadata:
+      labels:
+        app: pod-brands
+        env: dev
+    spec:
+      containers:
+      - name: cont-brands
+        image: ddas55/sb-mongo-brands
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8070
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: vm-brands
+          mountPath: "/config/" 
+          readOnly: true
+      volumes:
+      - name: vm-brands
+        configMap:
+          name: cm-brands
+          items:
+          - key: application.properties 
+            path: application.properties
