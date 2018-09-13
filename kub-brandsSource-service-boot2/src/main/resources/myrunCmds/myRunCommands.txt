@@ -1,17 +1,22 @@
-Java/Maven
+#Java/Maven
 export JAVA_HOME=/home/das/Documents/myLibs/jdk1.8.0_151
 export PATH=${JAVA_HOME}/bin:${PATH}
 export M2_HOME=/home/das/Documents/myLibs/apache-maven-3.5.2
 export PATH=${M2_HOME}/bin:${PATH}
 
-1st time Create jar
+#1st time Create jar
 cd /home/das/Documents/myCmds/eclipseWorkspace/spring-cloud/kub-cm-mongo-flk-producer
 mvn -Pdockerimage docker:build docker:push
 
-Jenkins
+#Jenkins
 /home/das/Documents/myLibs/apache-tomcat-9.0.8/bin/startup.sh
 /home/das/Documents/myLibs/apache-tomcat-9.0.8/bin/shutdown.sh
 http://localhost:8888/jenkins
+
+#Verify if micro-service producing metrics and prometheus format
+http://localhost:8070/svcbrands/actuator
+http://localhost:8070/svcbrands/actuator/prometheus
+
 
 
 Kubernetes
