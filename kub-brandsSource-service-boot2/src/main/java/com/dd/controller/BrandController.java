@@ -99,6 +99,21 @@ public class BrandController {
     	List<Brand> brands = new ArrayList<>();
     	try {
     		//brands = dao.getVehBrands();
+			Brand bmw = new Brand();
+    		bmw.setBrand("BMW");
+    		Brand lr = new Brand();
+    		lr.setBrand("Land Rover");
+    		Brand mb = new Brand();
+    		mb.setBrand("Mercedes Benz");
+    		Brand pr = new Brand();
+    		pr.setBrand("Porche");
+    		Brand ts = new Brand();
+    		ts.setBrand("Tesla");
+    		brands.add(bmw);
+    		brands.add(lr);
+    		brands.add(mb);
+    		brands.add(pr);
+    		brands.add(ts);
     		logger.info("@@ logger BrandController.brands:" + brands);
 			return new ResponseEntity<List<Brand>>(brands,HttpStatus.OK);
 	
