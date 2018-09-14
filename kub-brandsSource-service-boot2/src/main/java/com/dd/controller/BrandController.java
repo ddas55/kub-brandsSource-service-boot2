@@ -65,8 +65,17 @@ public class BrandController {
     		bmw.setBrand("BMW");
     		Brand lr = new Brand();
     		bmw.setBrand("Land Rover");
+    		Brand mb = new Brand();
+    		mb.setBrand("Mercedes Benz");
+    		Brand pr = new Brand();
+    		pr.setBrand("Porche");
+    		Brand ts = new Brand();
+    		bmw.setBrand("Tesla");
     		brands.add(bmw);
     		brands.add(lr);
+    		brands.add(mb);
+    		brands.add(pr);
+    		brands.add(ts);
 		} catch (RuntimeException e) {
 			logger.error(" # allbrands.ERROR :" ,e.getMessage());
 			e.printStackTrace();
