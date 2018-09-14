@@ -64,13 +64,13 @@ public class BrandController {
 			Brand bmw = new Brand();
     		bmw.setBrand("BMW");
     		Brand lr = new Brand();
-    		bmw.setBrand("Land Rover");
+    		lr.setBrand("Land Rover");
     		Brand mb = new Brand();
     		mb.setBrand("Mercedes Benz");
     		Brand pr = new Brand();
     		pr.setBrand("Porche");
     		Brand ts = new Brand();
-    		bmw.setBrand("Tesla");
+    		ts.setBrand("Tesla");
     		brands.add(bmw);
     		brands.add(lr);
     		brands.add(mb);
@@ -98,13 +98,7 @@ public class BrandController {
     	logger.info("@@ logger BrandController.random:" + random);
     	List<Brand> brands = new ArrayList<>();
     	try {
-    		Brand bmw = new Brand();
-    		bmw.setBrand("BMW");
-    		Brand lr = new Brand();
-    		lr.setBrand("Land Rover");
-    		brands.add(bmw);
-    		brands.add(lr);
-			//brands = dao.getVehBrands();
+    		//brands = dao.getVehBrands();
     		logger.info("@@ logger BrandController.brands:" + brands);
 			return new ResponseEntity<List<Brand>>(brands,HttpStatus.OK);
 	
