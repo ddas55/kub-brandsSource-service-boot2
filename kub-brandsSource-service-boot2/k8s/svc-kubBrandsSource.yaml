@@ -17,34 +17,5 @@ spec:
     port: 443
     targetPort: 8443
     nodePort: 31005
-    
----
 
-#apiVersion: extensions/v1beta1
-#kind: Ingress
-#metadata:
-#  name: basic-ingress
-#spec:
-#  backend:
-#    serviceName: svc-brands
-#    servicePort: 8070
-
-#apiVersion: extensions/v1beta1
-#kind: Ingress
-#metadata:
-#  name: ing-brands
-#spec:
-#  rules:
-#  - http: 
-#     paths:
-#      - path: /svcbrands
-#        backend:
-#          serviceName: svc-brands
-#          servicePort: 8070
-##      - path: /bar
-##        backend:
-##          serviceName: s2
-##          servicePort: 80
-    
-    
     
