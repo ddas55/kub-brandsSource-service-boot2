@@ -4,20 +4,12 @@ kind: Deployment
 metadata:
   name: dp-kub-brandssource-service
 spec:
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 1
-      minReadySeconds: 10
-      #minReadySeconds:the bootup time of your application, Kubernetes waits specific time til the next pod creation.
-      #maxSurge: 1 means that there will be at most 3 pods during the update process if replicas is 2
-      #maxUnavailable:amount of pods that can be unavailable during the update process
   replicas: 2
   template:
     metadata:
       labels:
         app: kub-brandssource-service
+        version: "1.1"
     spec:
       containers:
       - name: kub-brandssource-service
