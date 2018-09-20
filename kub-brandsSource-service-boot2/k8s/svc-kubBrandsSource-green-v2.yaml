@@ -19,7 +19,9 @@ spec:
     targetPort: 8443
     nodePort: 31005
     
-
+#The port here is an abstract service port, which will allow any other resources to access the service within the cluster. 
+#The nodePort will be indicating the external port to allow external access. 
+#The targetPort is the port the container allows traffic into; by default, it will be the same port.
 
 #apiVersion: extensions/v1beta1
 #kind: Ingress
