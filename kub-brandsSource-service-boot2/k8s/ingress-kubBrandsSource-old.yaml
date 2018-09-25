@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-brandssource-service
+spec:
+  rules:
+  - http: 
+     paths:
+      - path: /svcbrands
+        backend:
+          serviceName: svc-kub-brandssource-service
+          servicePort: 8070
