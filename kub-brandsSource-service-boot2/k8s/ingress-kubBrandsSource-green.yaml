@@ -1,10 +1,7 @@
-#use annotation rewrite-target to guarantee that traffic redirection starts from root, /.
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress-brandssource-service
-  annotations: 
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: dd.k8s.io
@@ -14,7 +11,10 @@ spec:
             backend:
               serviceName: svc-kub-brandssource-service
               servicePort: 8070
-          - path: /echoserver
-            backend:
-              serviceName: echoserver-svc
-              servicePort: 8080
+#          - path: /echoserver
+#            backend:
+#              serviceName: echoserver-svc  
+#              servicePort: 8080
+
+
+#use annotation rewrite-target to guarantee that traffic redirection starts from root, /.

@@ -37,10 +37,9 @@ k create configmap cm-kub-brandssource-service \
 k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/dp-kubBrandsSource-green-v2.yaml
 k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/svc-kubBrandsSource.yaml
 k apply -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/ingress-kubBrandsSource-green.yaml
-
-
 k get ingresses
-
+kubectl describe ing ingress-brandssource-service
+curl http://dd.k8s.io/svcbrands/brands/allbrands
 
 ## For Minikube , 
 http://192.168.99.100:31004/svcbrands/brands/allbrandsui
