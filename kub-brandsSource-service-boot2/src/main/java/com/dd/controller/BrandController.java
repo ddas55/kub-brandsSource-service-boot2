@@ -60,72 +60,37 @@ public class BrandController {
     	logger.info("@@ BrandController.random:" + random);
     	List<Brand> brands = new ArrayList<>();
     	try {
-			//brands = dao.getVehBrands();
-			Brand bmw = new Brand();
-    		bmw.setBrand("BMW");
-    		Brand lr = new Brand();
-    		lr.setBrand("Land Rover");
-    		Brand mb = new Brand();
-    		mb.setBrand("Mercedes Benz");
-    		Brand pr = new Brand();
-    		pr.setBrand("Porche");
-    		Brand ts = new Brand();
-    		ts.setBrand("Tesla");
-    		brands.add(bmw);
-    		brands.add(lr);
-    		brands.add(mb);
-    		brands.add(pr);
-    		brands.add(ts);
-		} catch (RuntimeException e) {
-			logger.error(" # allbrands.ERROR :" ,e.getMessage());
-			e.printStackTrace();
+			brands = dao.getVehBrands();
 		}
-    	/*
     	catch (DAOException | RuntimeException e) {
 			logger.error(" # allbrands.ERROR :" ,e.getMessage());
 			e.printStackTrace();
-		}*/
+		}
         return getHTML(brands);
     }
     
     @RequestMapping(path="/allbrands",method = RequestMethod.GET)
     public ResponseEntity<?> allbrands() {
     	hit++;
-       	System.out.println("$$$$$$ S.O.P BrandController.Hit:" + hit);
+    	System.out.println("$$$$$$ S.O.P BrandController.Hit:" + hit);
        	System.out.println("$$$$$$ S.O.P BrandController.random:" + random);
     	
        	logger.info("## logger BrandController.Hit:" + hit);
     	logger.info("@@ logger BrandController.random:" + random);
     	List<Brand> brands = new ArrayList<>();
     	try {
-    		//brands = dao.getVehBrands();
-			Brand bmw = new Brand();
-    		bmw.setBrand("BMW");
-    		Brand lr = new Brand();
-    		lr.setBrand("Land Rover");
-    		Brand mb = new Brand();
-    		mb.setBrand("Mercedes Benz");
-    		Brand pr = new Brand();
-    		pr.setBrand("Porche");
-    		Brand ts = new Brand();
-    		ts.setBrand("Tesla");
-    		brands.add(bmw);
-    		brands.add(lr);
-    		brands.add(mb);
-    		brands.add(pr);
-    		brands.add(ts);
-    		logger.info("@@ logger BrandController.brands:" + brands);
+    		brands = dao.getVehBrands();
+			logger.info("@@ logger BrandController.brands:" + brands);
 			return new ResponseEntity<List<Brand>>(brands,HttpStatus.OK);
 	
 		} catch (RuntimeException e) {
 			logger.error(" # allbrands.ERROR :" ,e.getMessage());
 			e.printStackTrace();
 		}
-    	/*
     	catch (DAOException  e) {
 			logger.error(" # allbrands.ERROR :" ,e.getMessage());
 			e.printStackTrace();
-		}*/
+		}
     	return new ResponseEntity(null,HttpStatus.INTERNAL_SERVER_ERROR);
     }
     
