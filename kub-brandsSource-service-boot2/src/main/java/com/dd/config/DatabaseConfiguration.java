@@ -19,17 +19,17 @@ public class DatabaseConfiguration  {
 	
     private final Logger logger = LoggerFactory.getLogger(DatabaseConfiguration.class);
     
-    //@Value("${mongodb.host}")
-    private String host="54.70.210.212";
+    @Value("${mongodb.host}")
+    private String host;
     
-    //@Value("${mongodb.port}")
-    private String port="12017";
+    @Value("${mongodb.port}")
+    private String port;
     
     //@Value("${mongodb.username}")
     private String username="ddas";
     
-    //@Value("${mongodb.database}")
-    private String database="Clist";
+    @Value("${mongodb.database}")
+    private String database;
     
     //@Value("${mongodb.password}")
     private String password="Gunti@16Oct2005";
