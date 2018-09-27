@@ -19,35 +19,40 @@ public class DatabaseConfiguration  {
 	
     private final Logger logger = LoggerFactory.getLogger(DatabaseConfiguration.class);
     
-    @Value("${mongodb.host}")
-    private String host;
+    //@Value("${mongodb.host}")
+    private String host="54.70.210.212";
     
-    @Value("${mongodb.port}")
-    private String port;
+    //@Value("${mongodb.port}")
+    private String port="12017";
     
-    @Value("${mongodb.username}")
-    private String username;
+    //@Value("${mongodb.username}")
+    private String username="ddas";
     
-    @Value("${mongodb.database}")
-    private String database;
+    //@Value("${mongodb.database}")
+    private String database="Clist";
     
-    @Value("${mongodb.password}")
-    private String password;
+    //@Value("${mongodb.password}")
+    private String password="Gunti@16Oct2005";
 
 
 	@Bean
 	public MongoDbFactory mongoDbFactory() {
 		MongoDbFactory fact=null;
-		logger.info("************ DatabaseConfiguration.mongo host:" + host + " ,port:" + port
-				+ " ,database:" + database + " ,username:" + username
-				+ " ,password:" + password );
-		
-		MongoCredential credential = MongoCredential.createCredential(username, database, password.toCharArray());
-		ServerAddress serverAddress = new ServerAddress(host, Integer.parseInt(port));
-	    MongoClient mongoClient = new MongoClient(serverAddress,Arrays.asList(credential)); 
-	    logger.info("************ DatabaseConfiguration.mongo mongoClient :" +  mongoClient );
-	    fact =  new SimpleMongoDbFactory(mongoClient, database);
-	    logger.info("************ DatabaseConfiguration.mongo MongoDbFactory :" +  fact );
+		try {
+			logger.info("************ DatabaseConfiguration.mongo host:" + host + " ,port:" + port
+					+ " ,database:" + database + " ,username:" + username
+					+ " ,password:" + password );
+			
+			MongoCredential credential = MongoCredential.createCredential(username, database, password.toCharArray());
+			ServerAddress serverAddress = new ServerAddress(host, Integer.parseInt(port));
+			MongoClient mongoClient = new MongoClient(serverAddress,Arrays.asList(credential)); 
+			logger.info("************ DatabaseConfiguration.mongo mongoClient :" +  mongoClient );
+			fact =  new SimpleMongoDbFactory(mongoClient, database);
+			logger.info("************ DatabaseConfiguration.mongo MongoDbFactory :" +  fact );
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+	    
 	    return fact;
 	}
 
