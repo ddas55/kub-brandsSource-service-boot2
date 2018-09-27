@@ -31,8 +31,8 @@ public class DatabaseConfiguration  {
     @Value("${mongodb.database}")
     private String database;
     
-    //@Value("${mongodb.password}")
-    private String password="Gunti@16Oct2005";
+    @Value("${mongodb.password}")
+    private String password;
 
 
 	@Bean
