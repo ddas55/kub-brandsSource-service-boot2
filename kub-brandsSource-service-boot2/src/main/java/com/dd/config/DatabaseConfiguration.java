@@ -43,7 +43,7 @@ public class DatabaseConfiguration  {
 					+ " ,database:" + database + " ,username:" + username
 					+ " ,password:" + password );
 			
-			MongoCredential credential = MongoCredential.createCredential(username, database, password.toCharArray());
+			MongoCredential credential = MongoCredential.createPlainCredential(username.toString(), database, password.toCharArray());
 			ServerAddress serverAddress = new ServerAddress(host, Integer.parseInt(port));
 			MongoClient mongoClient = new MongoClient(serverAddress,Arrays.asList(credential)); 
 			logger.info("************ DatabaseConfiguration.mongo mongoClient :" +  mongoClient );
