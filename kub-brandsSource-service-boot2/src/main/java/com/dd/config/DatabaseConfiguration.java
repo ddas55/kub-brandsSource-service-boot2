@@ -23,7 +23,7 @@ public class DatabaseConfiguration  {
     private String host;
     
     @Value("${mongodb.port}")
-    private Integer port;
+    private String port;
     
     @Value("${mongodb.username}")
     private String username;
@@ -43,7 +43,7 @@ public class DatabaseConfiguration  {
 				+ " ,password:" + password );
 		
 		MongoCredential credential = MongoCredential.createCredential(username, database, password.toCharArray());
-		ServerAddress serverAddress = new ServerAddress(host, port);
+		ServerAddress serverAddress = new ServerAddress(host, Integer.parseInt(port));
 	    MongoClient mongoClient = new MongoClient(serverAddress,Arrays.asList(credential)); 
 	    logger.info("************ DatabaseConfiguration.mongo mongoClient :" +  mongoClient );
 	    fact =  new SimpleMongoDbFactory(mongoClient, database);
