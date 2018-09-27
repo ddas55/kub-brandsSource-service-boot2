@@ -1,9 +1,10 @@
+
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: dp-kub-brandssource-service
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -22,12 +23,8 @@ spec:
             cpu: 100m
             memory: 100Mi
         volumeMounts:
-        - name: vm-kub-brandssource-appprops
+        - name: vm-kub-brandssource-service
           mountPath: "/config/" 
-          readOnly: true
-        volumeMounts:
-        - name: vm-kub-brandssource-bootstrap
-          mountPath: "/config/bootstrap" 
           readOnly: true
         livenessProbe:
           httpGet:
@@ -47,42 +44,11 @@ spec:
              - name: X-Custom-Header
                value: Awesome
           initialDelaySeconds: 5
-        env:
-          - name: MONGO_HOST
-            valueFrom:
-              secretKeyRef:
-                name: scrt-mongodb-access
-                key: mongodb.host
-          - name: MONGO_PORT
-            valueFrom:
-              secretKeyRef:
-                name: scrt-mongodb-access
-                key: mongodb.port
-          - name: MONGO_USER
-            valueFrom:
-              secretKeyRef:
-                name: scrt-mongodb-access
-                key: mongodb.username
-          - name: MONGO_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: scrt-mongodb-access
-                key: mongodb.password
-          - name: MONGO_DATABASE
-            valueFrom:
-              secretKeyRef:
-                name: scrt-mongodb-access
-                key: mongodb.database
       volumes:
-      - name: vm-kub-brandssource-appprops
+      - name: vm-kub-brandssource-service
         configMap:
           name: cm-kub-brandssource-service
           items:
           - key: application.properties 
             path: application.properties
-      - name: vm-kub-brandssource-bootstrap
-        configMap:
-          name: cm-kub-brandssource-bootstrap
-          items:
-          - key: bootstrap.properties 
-            path: bootstrap.properties  
+            

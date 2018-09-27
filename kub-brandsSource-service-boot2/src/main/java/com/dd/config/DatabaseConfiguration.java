@@ -32,7 +32,7 @@ public class DatabaseConfiguration  {
     private String database;
     
     @Value("${mongodb.password}")
-    private String password="Gunti@16Oct2005";
+    private String password;
 
 
 	@Bean
