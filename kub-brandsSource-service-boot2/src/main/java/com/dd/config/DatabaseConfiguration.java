@@ -25,14 +25,14 @@ public class DatabaseConfiguration  {
     @Value("${mongodb.port}")
     private String port;
     
-    //@Value("${mongodb.username}")
-    private String username="ddas";
+    @Value("${mongodb.username}")
+    private String username;
     
     @Value("${mongodb.database}")
     private String database;
     
     @Value("${mongodb.password}")
-    private String password;
+    private String password="Gunti@16Oct2005";
 
 
 	@Bean
