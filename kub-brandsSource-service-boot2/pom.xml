@@ -37,6 +37,7 @@
 		<java.version>1.8</java.version>
 		<logback.version>1.1.6</logback.version>
 		<spring-cloud.version>Finchley.SR1</spring-cloud.version>
+		<cucumber-version>4.0.0</cucumber-version>
 	</properties>
 
 	<dependencies>
@@ -103,18 +104,32 @@
         </dependency>
     	<!--END MongoDB Related jar --> 
     	
-    	
-    	
-        <!--  
-       	<dependency>
-		  <groupId>org.springframework.cloud</groupId>
-		  <artifactId>spring-cloud-security</artifactId>
-		</dependency>
+    	<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-spring -->
+
+ 		<!-- Cucumber-->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-version}</version>
+            <scope>test</scope>
+        </dependency>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 		<dependency>
-		  <groupId>org.springframework.security.oauth</groupId>
-		  <artifactId>spring-security-oauth2</artifactId>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-junit</artifactId>
+		    <version>4.0.0</version>
+		    <scope>test</scope>
 		</dependency>
-        -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>${cucumber-version}</version>
+            <scope>test</scope>
+        </dependency>
+    	
+        
+
+        
          
 	</dependencies>
 
