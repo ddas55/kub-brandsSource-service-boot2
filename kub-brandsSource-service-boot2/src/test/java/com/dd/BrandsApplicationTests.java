@@ -26,7 +26,7 @@ public class BrandsApplicationTests {
 	@Test
 	public void testDao() throws DAOException, RuntimeException {
 		List<Brand> list = dao.getVehBrands();
-		System.out.println("***** list:" + list);
+		System.out.println("############### list:" + list);
 		//assertNotNull(list);
 	}
 
