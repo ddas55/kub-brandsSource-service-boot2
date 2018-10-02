@@ -17,7 +17,7 @@ import com.dd.data.Brand;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes=BrandProducerApplication.class)
-@SpringBootTest//(classes={net.minidev.json.writer.JsonReaderI.class})
+@SpringBootTest
 public class BrandsApplicationTests {
 	
 	@Autowired
