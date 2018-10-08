@@ -76,7 +76,7 @@ spec:
       volumes:
       - name: vm-kub-brandssource-appprops
         configMap:
-          name: cm-kub-brandssource-service
+          name: cm-kub-brandssource-app
           items:
           - key: application.properties 
             path: application.properties
