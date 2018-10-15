@@ -113,7 +113,7 @@ public class BrandController {
     		sb.append("<table>");
     		sb.append("<tr>");
     			sb.append("<td valign='top'>");
-    			sb.append("<table bgcolor='#7baee5'");//#7baee5-blue , #74f293-green
+    			sb.append("<table bgcolor='#74f293'");//#7baee5-blue , #74f293-green
     			
     				sb.append("<tr>");
     					sb.append("<td>");sb.append("<b>HIT:</b>  " + asi.getHit() );sb.append("</td>");
@@ -164,7 +164,7 @@ public class BrandController {
     	appstatus.setRandom(String.valueOf(random));
     	appstatus.setAppname(applicationName);
     	appstatus.setTime(tm);
-    	appstatus.setVersion("V1-Blue");
+    	appstatus.setVersion("V2-Green");
     	return appstatus;
     }
 
