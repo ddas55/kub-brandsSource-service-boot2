@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dd.dao.ConfigDAO;
 import com.dd.dao.DAOException;
+import com.dd.data.AppStatusInfo;
 import com.dd.data.Brand;
 
 @RestController
@@ -52,20 +53,23 @@ public class BrandController {
 		return String.valueOf(System.currentTimeMillis());
 		//return new ResponseEntity(System.currentTimeMillis(),HttpStatus.OK);
 	}
+	@RequestMapping(path="/appinforaw" , method= RequestMethod.GET)
+    public String appinforaw() {
+    	AppStatusInfo asi =getAppStatus();
+    	return asi.toString();
+    }
 	
 	@RequestMapping(path="/appinfo" , method= RequestMethod.GET)
     public String getAppInfo() {
-    	hit++;
-       	logger.info("## BrandController.Hit:" + hit);
-    	logger.info("@@ BrandController.random:" + random);
-        return getHTML(null);
+		AppStatusInfo asi =getAppStatus();
+       	logger.info("## BrandController.asi:" + asi);
+        return getHTML(asi,null);
     }
 	
     @RequestMapping(path="/allbrandsui" , method= RequestMethod.GET)
     public String allbrandsui() {
-    	hit++;
-       	logger.info("## BrandController.Hit:" + hit);
-    	logger.info("@@ BrandController.random:" + random);
+    	AppStatusInfo asi =getAppStatus();
+       	logger.info("## BrandController.asi:" + asi);
     	List<Brand> brands = new ArrayList<>();
     	try {
 			brands = dao.getVehBrands();
@@ -74,12 +78,12 @@ public class BrandController {
 			logger.error(" # allbrands.ERROR :" ,e.getMessage());
 			e.printStackTrace();
 		}
-        return getHTML(brands);
+        return getHTML(asi,brands);
     }
     
     @RequestMapping(path="/allbrands",method = RequestMethod.GET)
     public ResponseEntity<?> allbrands() {
-    	hit++;
+    	AppStatusInfo asi =getAppStatus();
     	System.out.println("$$$$$$ S.O.P BrandController.Hit:" + hit);
        	System.out.println("$$$$$$ S.O.P BrandController.random:" + random);
     	
@@ -102,9 +106,7 @@ public class BrandController {
     	return new ResponseEntity(null,HttpStatus.INTERNAL_SERVER_ERROR);
     }
     
-    private String getHTML(List<Brand> brands) {
-    	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-    	String tm=ft.format(System.currentTimeMillis());
+    private String getHTML(AppStatusInfo asi,List<Brand> brands) {
     	StringBuilder sb = new StringBuilder();
     	sb.append("<html>");
     		sb.append("<body>");
@@ -114,22 +116,22 @@ public class BrandController {
     			sb.append("<table bgcolor='#7baee5'");//#7baee5-blue , #74f293-green
     			
     				sb.append("<tr>");
-    					sb.append("<td>");sb.append("<b>HIT:</b>  " + hit );sb.append("</td>");
+    					sb.append("<td>");sb.append("<b>HIT:</b>  " + asi.getHit() );sb.append("</td>");
     				sb.append("</tr>");
     				sb.append("<tr>");
-						sb.append("<td>");sb.append("<b>TIME</b>:  " + tm );sb.append("</td>");
+						sb.append("<td>");sb.append("<b>TIME</b>:  " + asi.getTime() );sb.append("</td>");
 					sb.append("</tr>");
 					sb.append("<tr>");
-						sb.append("<td>");sb.append("<b>STATIC RANDOM#</b> :  " + random);sb.append("</td>");
+						sb.append("<td>");sb.append("<b>STATIC RANDOM#</b> :  " + asi.getRandom());sb.append("</td>");
 					sb.append("</tr>");
 					sb.append("<tr>");
-						sb.append("<td>");sb.append("<b>APP NAME</b> :  " + applicationName);sb.append("</td>");
+						sb.append("<td>");sb.append("<b>APP NAME</b> :  " + asi.getAppname());sb.append("</td>");
 					sb.append("</tr>");
 					sb.append("<tr>");
-						sb.append("<td>");sb.append("<b>Msg</b> : " + msg);sb.append("</td>");
+						sb.append("<td>");sb.append("<b>Msg</b> : " + asi.getFrompropfile());sb.append("</td>");
 					sb.append("</tr>");
 					sb.append("<tr>");
-						sb.append("<td>");sb.append("<b>VERSION</b> : " + "V1-Blue");sb.append("</td>");
+						sb.append("<td>");sb.append("<b>VERSION</b> : " + asi.getVersion());sb.append("</td>");
 					sb.append("</tr>");
 					
 				sb.append("</table>");
@@ -153,6 +155,17 @@ public class BrandController {
     	sb.append("</html>");
     	return sb.toString();
     }
-
+    private AppStatusInfo getAppStatus() {
+		hit++;
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    	String tm=ft.format(System.currentTimeMillis());
+    	AppStatusInfo appstatus = new AppStatusInfo();
+    	appstatus.setHit(String.valueOf(hit));
+    	appstatus.setRandom(String.valueOf(random));
+    	appstatus.setAppname(applicationName);
+    	appstatus.setTime(tm);
+    	appstatus.setVersion("V1-Blue");
+    	return appstatus;
+    }
 
 }
