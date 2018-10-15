@@ -35,7 +35,7 @@ k create configmap cm-kub-brandssource-service \
 
 #APP
 k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/dp-kubBrandsSource-green-v2.yaml
-k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/svc-kubBrandsSource.yaml
+k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/svc-kubBrandsSource-green-v2.yaml
 k apply -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/ingress-kubBrandsSource-green.yaml
 k get ingresses
 kubectl describe ing ingress-brandssource-service

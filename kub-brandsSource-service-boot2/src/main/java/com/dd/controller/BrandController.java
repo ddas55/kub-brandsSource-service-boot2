@@ -53,6 +53,14 @@ public class BrandController {
 		//return new ResponseEntity(System.currentTimeMillis(),HttpStatus.OK);
 	}
 	
+	@RequestMapping(path="/appinfo" , method= RequestMethod.GET)
+    public String getAppInfo() {
+    	hit++;
+       	logger.info("## BrandController.Hit:" + hit);
+    	logger.info("@@ BrandController.random:" + random);
+        return getHTML(null);
+    }
+	
     @RequestMapping(path="/allbrandsui" , method= RequestMethod.GET)
     public String allbrandsui() {
     	hit++;
@@ -103,7 +111,7 @@ public class BrandController {
     		sb.append("<table>");
     		sb.append("<tr>");
     			sb.append("<td valign='top'>");
-    			sb.append("<table bgcolor='#dcccff'");
+    			sb.append("<table bgcolor='#7baee5'");//#7baee5-blue , #74f293-green
     			
     				sb.append("<tr>");
     					sb.append("<td>");sb.append("<b>HIT:</b>  " + hit );sb.append("</td>");
@@ -118,11 +126,15 @@ public class BrandController {
 						sb.append("<td>");sb.append("<b>APP NAME</b> :  " + applicationName);sb.append("</td>");
 					sb.append("</tr>");
 					sb.append("<tr>");
-						sb.append("<td>");sb.append("<b>FROM PROP FILE</b> : " + msg);sb.append("</td>");
+						sb.append("<td>");sb.append("<b>Msg</b> : " + msg);sb.append("</td>");
 					sb.append("</tr>");
+					sb.append("<tr>");
+						sb.append("<td>");sb.append("<b>VERSION</b> : " + "V1-Blue");sb.append("</td>");
+					sb.append("</tr>");
+					
 				sb.append("</table>");
     			sb.append("</td>");
-    			
+    		if(null!=brands) {	
     			sb.append("<td>");
     			sb.append("<table bgcolor='#dcccff'");
 	    			if(null!=brands) {
@@ -134,7 +146,7 @@ public class BrandController {
 					}
     			sb.append("</table>");
     			sb.append("</td>");
-    		
+    		}
     		sb.append("</tr>");
     		sb.append("</table>");
     		sb.append("</body>");
