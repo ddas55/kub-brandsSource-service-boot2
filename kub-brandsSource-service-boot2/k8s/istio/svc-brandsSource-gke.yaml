@@ -1,0 +1,26 @@
+#spec.ports.name in service definition must be named properly (http, http2, grpc, redis, mongo) 
+#otherwise Envoy will act on that service traffic as if it was plain TCP, and you will 
+#not be able to use the layer 7 features with those services! 
+#Also, the pods must be targeted only by 1 “service” in the cluster.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kub-brandssource-service
+spec:
+  selector:
+    app: kub-brandssource-service
+# default is ClusterIP
+#  type: ClusterIP
+#  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8070
+    protocol: TCP
+#    nodePort: 31004
+  - name: https
+    port: 443
+    targetPort: 8443
+    protocol: TCP
+#    nodePort: 31005

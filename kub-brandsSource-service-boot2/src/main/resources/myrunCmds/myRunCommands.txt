@@ -41,6 +41,10 @@ k get ingresses
 kubectl describe ing ingress-brandssource-service
 curl http://dd.k8s.io/svcbrands/brands/allbrands
 
+k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/all-kubBrandsSource-green-v1-blue-gke.yaml
+istioctl create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/istio/trafficRouting/rr-v1-100.yaml \
+ -n d
+
 
 ## For Minikube , 
 http://192.168.99.100:31004/svcbrands/brands/allbrandsui

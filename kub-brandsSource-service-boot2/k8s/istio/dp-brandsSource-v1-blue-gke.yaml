@@ -1,21 +1,22 @@
+#Note that when you want to use the Envoy sidecar with your pods, 
+#the label “app” should be present (it’s used in the request tracing feature),
+
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: dp-brandssource-v2
+  name: dp-brandssource-v1
   namespace: default
-  labels:
-    app: kub-brandssource-service
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: kub-brandssource-service
-        version: brandssource-version-2
+        version: brandssource-version-1
     spec:
       containers:
       - name: brandssource-version-1
-        image: ddas55/kub-brandssource-service-v2
+        image: ddas55/kub-brandssource-service
         imagePullPolicy: Always
         ports:
         - containerPort: 8070
