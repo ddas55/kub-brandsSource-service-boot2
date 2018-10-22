@@ -42,16 +42,12 @@ public class BrandController {
 
 	@RequestMapping("/healthz")
 	public String healthz() {
-		//logger.info("** healthz Called random:" + random);
 	    return String.valueOf(System.currentTimeMillis());
 	}
 	
 	@RequestMapping("/rediness")
 	public String rediness() {
-		//logger.info("** rediness Called random:" + random);
-		//Load large data or configuration files during startup. 
 		return String.valueOf(System.currentTimeMillis());
-		//return new ResponseEntity(System.currentTimeMillis(),HttpStatus.OK);
 	}
 	@RequestMapping(path="/appinforaw" , method= RequestMethod.GET)
     public String appinforaw() {
@@ -84,9 +80,6 @@ public class BrandController {
     @RequestMapping(path="/allbrands",method = RequestMethod.GET)
     public ResponseEntity<?> allbrands() {
     	AppStatusInfo asi =getAppStatus();
-    	System.out.println("$$$$$$ S.O.P BrandController.Hit:" + hit);
-       	System.out.println("$$$$$$ S.O.P BrandController.random:" + random);
-    	
        	logger.info("## logger BrandController.Hit:" + hit);
     	logger.info("@@ logger BrandController.random:" + random);
     	List<Brand> brands = new ArrayList<>();
