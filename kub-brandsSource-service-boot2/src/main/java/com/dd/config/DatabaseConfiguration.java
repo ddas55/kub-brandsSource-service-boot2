@@ -1,10 +1,12 @@
 package com.dd.config;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.mongo.MongoClientSettingsBuilderCustomizer;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoClientFactory;
 
 @Configuration
 @ConfigurationProperties("spring.datasource")
@@ -45,7 +48,7 @@ public class DatabaseConfiguration  {
 			logger.info("************ DEV DatabaseConfiguration.mongo host:" + host + " ,port:" + port
 					+ " ,database:" + database + " ,username:" + username
 					+ " ,password:" + password );
-			
+
 			MongoCredential credential = MongoCredential.createCredential(username.toString(), database, password.toCharArray());
 			ServerAddress serverAddress = new ServerAddress(host, Integer.parseInt(port));
 			MongoClient mongoClient = new MongoClient(serverAddress,Arrays.asList(credential)); 
@@ -66,7 +69,7 @@ public class DatabaseConfiguration  {
 			logger.info("************ PROD DatabaseConfiguration.mongo host:" + host + " ,port:" + port
 					+ " ,database:" + database + " ,username:" + username
 					+ " ,password:" + password );
-			
+
 			MongoCredential credential = MongoCredential.createCredential(username.toString(), database, password.toCharArray());
 			ServerAddress serverAddress = new ServerAddress(host, Integer.parseInt(port));
 			MongoClient mongoClient = new MongoClient(serverAddress,Arrays.asList(credential)); 

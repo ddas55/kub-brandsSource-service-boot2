@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import brave.sampler.Sampler;
 
 //import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
