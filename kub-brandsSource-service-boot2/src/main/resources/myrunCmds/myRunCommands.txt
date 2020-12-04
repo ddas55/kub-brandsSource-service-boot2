@@ -24,14 +24,14 @@ Kubernetes
 
 minikube --memory 4000 --cpus 1 start
 k create configmap cm-kub-brandssource-service \
---from-file=/home/das/git/kub-brandsSource-service/kub-brandsSource-service/src/main/resources/application.properties
+--from-file=/Users/ddas04/Documents/eclipse-workspace/microservice-kub/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/src/main/resources/application.properties
 
 k get configmap cm-kub-brandssource-service  -o yaml
 
 # Replace created configMap
-k create configmap cm-kub-brandssource-service \
---from-file=/home/das/git/kub-brandsSource-service/kub-brandsSource-service/src/main/resources/application.properties -o yaml --dry-run | kubectl replace -f -
-
+k create configmap cm-kub-brandssource-service 
+--from-file=/Users/ddas04/Documents/eclipse-workspace/microservice-kub/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/src/main/resources/application.properties \
+ -o yaml --dry-run=client | kubectl replace -f -
 
 #APP
 k create -f /home/das/git/kub-brandsSource-service-boot2/kub-brandsSource-service-boot2/k8s/dp-kubBrandsSource-green-v2.yaml
