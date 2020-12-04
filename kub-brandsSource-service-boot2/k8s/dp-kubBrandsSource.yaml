@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: kub-brandssource-service
-        image: ddas55/kub-brandssource-service
+        image: ddas55/kub-brandssource-service-boot2:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8070
