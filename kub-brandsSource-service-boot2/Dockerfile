@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8
+FROM openjdk:11-jdk
 # Create directory to hold the application and all its contents in the Docker image.
 RUN mkdir /application
 # Copy all the static contents to be included in the Docker image.
